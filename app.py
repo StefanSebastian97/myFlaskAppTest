@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 import pandas as pd
 
 app = Flask(__name__)
@@ -24,13 +23,7 @@ class ContactInfo(db.Model):
 # Create the database tables
 with app.app_context():
     db.create_all()
-    data = ContactInfo.query.all()
-    data_list = [item.__dict__ for item in data]
-    for item in data_list:
-        item.pop('_sa_instance_state', None)
-
-df = pd.DataFrame(data_list)
-df.to_csv('output.csv', index=False)
+   
 @app.route('/', methods=['POST', 'GET'])
 def add_details():
     if request.method == 'POST':
@@ -52,8 +45,28 @@ def success():
     all_data = ContactInfo.query.all()
     return render_template('view.html', data=all_data)
 
-#Exporting to pandas
+# Exporting to pandas
+@app.teardown_appcontext
+def export_data_on_close(exception=None):
+    data = ContactInfo.query.all()
+    data_list = [item.__dict__ for item in data]
+    for item in data_list:
+        item.pop('_sa_instance_state', None)
+    df = pd.DataFrame(data_list)
+    
+    df = df.rename(columns={
+        'full_name': 'Full Name',
+        'email_address': 'Email Address',
+        'phone_number': 'Phone Number',
+        'em_phone_number': 'Emergency Phone Number',
+        'house_number': 'House Number',
+    })
 
+    # Reorder columns to ensure 'id' is the first column
+    df = df[['id', 'Full Name', 'Email Address', 'Phone Number', 'Emergency Phone Number', 'House Number']]
+    
+    # Export to CSV
+    df.to_csv('output.csv', index=False)
 
 if __name__ == '__main__':
     app.run(debug=True, port=9000)

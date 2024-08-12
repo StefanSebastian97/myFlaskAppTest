@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Personal Information</title>
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="container">
+      <form class="submit-form" method="POST", action="/">
+        <h2 class="submit-form-title">Personal Information</h2>
+        <p class="submit-form-desc">
+          Providing these details allows us to provide the best services towards you.
+        </p>
+
+            <label class="basic-info-label required" for="full_name">Full Name:</label>
+            <input class="basic-info-input" type="text" id="full_name" name="full_name">
+        
+            <label class="basic-info-label required" for="email_address">Email Address:</label>
+            <input class="basic-info-input" type="email" id="email_address" name="email_address">
+        
+            <label class="basic-info-label required" for="phone_number">Phone Number:</label>
+            <input class="basic-info-input" type="text" id="phone_number" name="phone_number">
+        
+            <label class="basic-info-label required" for="em_phone_number">Emergency Phone Number:</label>
+            <input class="basic-info-input" type="text" id="em_phone_number" name="em_phone_number">
+        
+            <label class="basic-info-label required" for="house_number">House Number:</label>
+            <input class="basic-info-input" type="text" id="house_number" name="house_number">
+    
+        <span class="submit-form-input">
+          <input class="submit-form-button" type="submit" value="submit" />
+        </span>
+      </form>
+    </div>
+</body>
+  {% endblock %}

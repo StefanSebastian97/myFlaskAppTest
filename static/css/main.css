@@ -1,0 +1,112 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  background: linear-gradient(
+    109.6deg,
+    rgb(36, 45, 57) 11.2%,
+    rgb(16, 37, 60) 51.2%,
+    rgb(0, 0, 0) 98.6%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container {
+  border: none;
+  width: 100%;
+  min-width: 200px;
+  max-width: 700px;
+  animation: fade-up 1s;
+}
+.submit-form-title {
+  margin-bottom: 0;
+  padding: 0;
+  user-select: none;
+}
+.submit-form-desc {
+  font-size: 14px;
+  margin-bottom: 25px;
+  user-select: none;
+}
+.submit-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: 30px;
+  padding: 40px;
+  border-radius: 10px;
+}
+.required:after {
+  content: " *";
+  color: red;
+}
+.basic-info-input {
+  font-size: 14px;
+  margin-bottom: 20px;
+  padding: 8px;
+}
+.basic-info-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+.horizontal-line {
+  color: black;
+}
+.submit-form-input {
+  display: flex;
+  justify-content: center;
+}
+#desc {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 160px;
+  margin-bottom: 5px;
+  resize: vertical;
+}
+.desc-char-count {
+  font-size: 12px;
+  margin-bottom: 14px;
+  color: rgb(164, 164, 164);
+  display: flex;
+  justify-content: end;
+}
+.desc-char-count-label {
+  margin: 0px;
+}
+.submit-form-terms-and-privacy {
+  font-size: 14px;
+  margin-bottom: 40px;
+  user-select: none;
+}
+.submit-form-button {
+  font-weight: bold;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  width: 150px;
+  cursor: pointer;
+}
+.submit-form-clear {
+  font-weight: bold;
+  background-color: rgb(89, 89, 89);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  width: 150px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.submit-form-button:hover,
+.submit-form-clear:hover {
+  opacity: 0.8;
+}
+.submit-form-button:active,
+.submit-form-clear:active {
+  opacity: 0.6;
+}

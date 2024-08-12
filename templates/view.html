@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Details</title>
+</head>
+<body>
+    <h1>Contact Information</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Emergency Phone Number</th>
+            <th>House Number</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.full_name }}</td>
+            <td>{{ item.email_address }}</td>
+            <td>{{ item.phone_number }}</td>
+            <td>{{ item.em_phone_number }}</td>
+            <td>{{ item.house_number }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

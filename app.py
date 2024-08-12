@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -23,7 +24,13 @@ class ContactInfo(db.Model):
 # Create the database tables
 with app.app_context():
     db.create_all()
+    data = ContactInfo.query.all()
+    data_list = [item.__dict__ for item in data]
+    for item in data_list:
+        item.pop('_sa_instance_state', None)
 
+df = pd.DataFrame(data_list)
+df.to_csv('output.csv', index=False)
 @app.route('/', methods=['POST', 'GET'])
 def add_details():
     if request.method == 'POST':
@@ -44,6 +51,8 @@ def add_details():
 def success():
     all_data = ContactInfo.query.all()
     return render_template('view.html', data=all_data)
+
+#Exporting to pandas
 
 
 if __name__ == '__main__':
